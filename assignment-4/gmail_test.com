@@ -8,8 +8,8 @@ Suite Setup               Setup Browser
 Suite Teardown            End Suite
 
 *** Variables ***
-${GMAIL_USER}             sumanchouhan0313@gmail.com       # <-- Replace with your Gmail address
-${GMAIL_RECIPIENT}        sumanchouhan0313@gmail.com       # <-- Replace (can send to yourself)
+${GMAIL_USER}             sumanchouhan0313@gmail.com 
+${GMAIL_RECIPIENT}        sumanchouhan0313@gmail.com
 ${SMTP_HOST}              smtp.gmail.com
 ${SMTP_PORT}              587
 ${IMAP_HOST}              imap.gmail.com
