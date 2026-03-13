@@ -35,6 +35,7 @@ Switch To Video Stream Window
 Enable Video Streaming If Needed
     [Documentation]       Ensures Video Streaming is Enabled in config.
     ...                   Clicks Enabled and tries Save. If already enabled, clicks Cancel.
+    ScrollText            Video Streaming and Recording    timeout=10s
     ClickText             Enabled         anchor=Video Streaming and Recording    timeout=20s
     ${save_ok}=           RunKeywordAndReturnStatus
     ...                   ClickText    Save    timeout=5s
