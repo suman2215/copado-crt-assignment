@@ -7,6 +7,7 @@ Suite Teardown            End Suite
 ${CRT_URL}                https://eu-robotic.copado.com/
 ${CRT_USERNAME}           None
 ${CRT_PASSWORD}           None
+${TEST_JOB_NAME}          Copado Assignment
 
 *** Keywords ***
 Setup Browser
@@ -57,7 +58,7 @@ Enable Video Streaming And Verify It Starts
     ClickText             Test Jobs       timeout=30s
 
     # Step 3: Click on the test job name to open its detail page
-    ClickText             Copado Assignment    timeout=20s
+    ClickText             ${TEST_JOB_NAME}    timeout=20s
 
     # Step 4: Open Configuration and enable Video Streaming
     ClickText             Configuration   timeout=20s
@@ -65,7 +66,7 @@ Enable Video Streaming And Verify It Starts
 
     # Step 5: Close the configuration panel by refreshing and navigating back
     ClickText             Test Jobs       timeout=30s
-    ClickText             Copado Assignment    timeout=20s
+    ClickText             ${TEST_JOB_NAME}    timeout=20s
 
     # Step 6: Click Run Test Job, select Open Video Stream, and Run Now
     ClickText             Run Test Job    timeout=30s
