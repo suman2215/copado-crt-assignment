@@ -1,1 +1,1 @@
-pip install robotframework-mailclient
+pip install robotframework-mailclient pyotp
