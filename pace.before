@@ -1,1 +1,1 @@
-pip install robotframework-imaplibrary2
+pip install robotframework-mailclient
