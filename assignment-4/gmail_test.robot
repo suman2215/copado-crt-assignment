@@ -71,10 +71,9 @@ Verify Email Received In Inbox Via IMAP
     ${links}=             Evaluate    list(dict.fromkeys($links))
     Log                   Found links: ${links}
 
-    # Step 6: Open all URLs from the email in the browser and verify they load
+    # Step 6: Open all URLs from the email in the browser and verify they fully load
     FOR    ${link}    IN    @{links}
         GoTo              ${link}
-        # Wait for page to load (URL may redirect, so just verify no longer on previous page)
-        VerifyNoText      about:blank     timeout=10s
+        VerifyElement     xpath\=//body/*    timeout=30s
         LogScreenshot
     END
