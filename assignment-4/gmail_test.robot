@@ -7,6 +7,8 @@ Suite Setup               Setup Browser
 Suite Teardown            End Suite
 
 *** Variables ***
+${GMAIL_USER}             sumanchouhan0313@gmail.com
+${GMAIL_RECIPIENT}        sumanchouhan0313@gmail.com
 ${SMTP_HOST}              smtp.gmail.com
 ${SMTP_SSL_PORT}          465
 ${IMAP_HOST}              imap.gmail.com
@@ -57,17 +59,22 @@ Verify Email Received In Inbox Via IMAP
     # Step 2: Open the email by subject and get raw MIME content
     ${mail_content}=      Open Imap Mail By Subject    ${EMAIL_SUBJECT}    useSsl=${True}
 
-    # Step 3: Verify email body contains expected content
-    Should Contain        ${mail_content}    automated test email
+    # Step 3: Decode quoted-printable encoding in MIME content
+    ${decoded}=           Evaluate    quopri.decodestring('''${mail_content}'''.encode()).decode()    quopri
 
-    # Step 4: Extract URLs from the email body
-    ${links}=             Evaluate    re.findall(r'https?://[^\\s<>"\\\\]+', '''${mail_content}''')    re
+    # Step 4: Verify email body contains expected content
+    Should Contain        ${decoded}    automated test email
+
+    # Step 5: Extract URLs from the decoded email body
+    ${links}=             Evaluate    re.findall(r'https?://[^\\s<>"\\\\]+', '''${decoded}''')    re
     # Remove duplicates while preserving order
     ${links}=             Evaluate    list(dict.fromkeys($links))
     Log                   Found links: ${links}
 
-    # Step 5: Open all URLs from the email in the browser
+    # Step 6: Open all URLs from the email in the browser and verify they load
     FOR    ${link}    IN    @{links}
         GoTo              ${link}
-        Sleep             3s
+        # Wait for page to load (URL may redirect, so just verify no longer on previous page)
+        VerifyNoText      about:blank     timeout=10s
+        LogScreenshot
     END

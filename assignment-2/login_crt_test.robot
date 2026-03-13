@@ -30,10 +30,7 @@ Login To Copado Robotic Testing
     # Step 2: Click "Sign in with email" to reveal email/password form
     ClickText             Sign in with email    timeout=30s
 
-    # Step 3: Enter credentials and log in
+    # Step 3: Enter credentials and log in, verify dashboard appears
     TypeText              Email           ${CRT_USERNAME}
     TypeText              Password        ${CRT_PASSWORD}
-    ClickText             Login
-
-    # Step 4: Verify successful login by checking for dashboard elements
-    VerifyText            Dashboard       timeout=30s
+    ClickUntil            Dashboard       Login    timeout=30s

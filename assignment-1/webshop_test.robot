@@ -25,11 +25,11 @@ Verify Gerald The Giraffe T-Shirt Price And Add To Cart
     VerifyText            Gerald the Giraffe
     VerifyText            $9.00                anchor=Gerald the Giraffe
 
-    # Step 3: Navigate to the Gerald the Giraffe product page
+    # Step 3: Navigate to the Gerald the Giraffe product page and verify price
     ClickText             Gerald the Giraffe
-
-    # Step 4: Verify price on product page and add to cart
     VerifyText            $9.00
+
+    # Step 4: Add to cart
     ClickText             Add to cart
 
     # Step 5: Open shopping cart and verify total is $9.00
