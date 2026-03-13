@@ -33,7 +33,8 @@ Send Email Via SMTP
 
     # Step 1: Configure SMTP server
     Set Smtp Server Address    ${SMTP_HOST}
-    Set Smtp Ssl Port          ${SMTP_SSL_PORT}
+    ${smtp_port}=              Convert To Integer    ${SMTP_SSL_PORT}
+    Set Smtp Ssl Port          ${smtp_port}
     Set Smtp Username And Password    ${GMAIL_USER}    ${GMAIL_APP_PASSWORD}
 
     # Step 2: Send the email
@@ -53,7 +54,8 @@ Verify Email Received In Inbox Via IMAP
 
     # Step 1: Configure IMAP server
     Set Imap Server Address    ${IMAP_HOST}
-    Set Imap Ssl Port          ${IMAP_SSL_PORT}
+    ${imap_port}=              Convert To Integer    ${IMAP_SSL_PORT}
+    Set Imap Ssl Port          ${imap_port}
     Set Imap Username And Password    ${GMAIL_USER}    ${GMAIL_APP_PASSWORD}
 
     # Step 2: Open the email by subject and get raw MIME content
